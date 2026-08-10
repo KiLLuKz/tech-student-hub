@@ -11,7 +11,7 @@
 ---
 
 ## 📌 About the Project
-This web application is being built to serve as the official digital showcase for the **Science-Math-Technology (SMT) Academic Program** at Bangpakok Wittayakom School. It highlights curriculum details, student achievements, academic activities, and program news.
+This web application is being built to serve as the official digital showcase for the **Science-Math-Technology Program** at Bangpakok Wittayakom School. It highlights curriculum details, student achievements, academic activities, and program news.
 
 ---
 
