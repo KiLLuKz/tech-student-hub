@@ -1,7 +1,7 @@
 # Science-Math-Technology Program Official Website
 
 > ⚠️ **DEVELOPMENT NOTICE & LEGAL DISCLAIMER**  
-> This website is currently **UNDER ACTIVE DEVELOPMENT** for the **Science-Math-Technology (SMT) Program at Bangpakok Wittayakom School**.  
+> This website is currently **UNDER ACTIVE DEVELOPMENT** for the **Science-Math-Technology Program at Bangpakok Wittayakom School**.  
 > 
 > **ALL RIGHTS RESERVED.** All contents, source code, school branding, graphic assets, and information within this repository are the exclusive intellectual property of **Bangpakok Wittayakom School** and the development team.  
 > 
