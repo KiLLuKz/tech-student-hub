@@ -1,15 +1,25 @@
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import { ArrowUpRight, Code, Terminal, Bot } from "lucide-react";
-import Link from "next/link";
+"use client";
 
-export const metadata = {
-  title: "ผลงานนักเรียน | Tech-Gen 8",
-  description: "รวมผลงานและโครงงานที่โดดเด่นของนักเรียน โครงการวิทยาศาสตร์-คณิตศาสตร์-เทคโนโลยี",
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import { ArrowUpRight, Code, Terminal, Bot } from "lucide-react";
+import { motion, Variants } from "framer-motion";
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
 };
 
-export default function PortfoliosPage() {
-  const portfolios = [
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
+
+export default function ActivitiesPage() {
+  const activities = [
     {
       id: 1,
       title: "ระบบบริหารจัดการทรัพยากรโรงเรียน (School ERP)",
@@ -45,36 +55,41 @@ export default function PortfoliosPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-[#1d1d1f] selection:bg-[#0066cc] selection:text-white flex flex-col font-sans overflow-hidden">
+    <div className="min-h-screen bg-transparent text-[#1d1d1f] dark:text-[#ededed] selection:bg-[#0066cc] selection:text-white flex flex-col font-sans overflow-hidden transition-colors">
       <Navbar />
 
       <main className="flex-1 flex flex-col items-center w-full pt-20 pb-24">
-        <div className="max-w-7xl mx-auto px-6 w-full">
+        <motion.div 
+          initial="hidden"
+          animate="visible"
+          variants={staggerContainer}
+          className="max-w-7xl mx-auto px-6 w-full"
+        >
           
           {/* Header */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter text-[#1d1d1f] mb-4">
-              ผลงานและความสำเร็จ
+          <motion.div variants={fadeUp} className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tighter text-[#1d1d1f] dark:text-white mb-4">
+              กิจกรรมและผลงาน
             </h1>
-            <p className="text-[17px] text-[#1d1d1f]/70 max-w-2xl mx-auto leading-relaxed font-light">
+            <p className="text-[15px] sm:text-[17px] text-[#1d1d1f]/70 dark:text-white/70 max-w-2xl mx-auto leading-relaxed font-light">
               รวบรวมโปรเจกต์ โครงงานวิทยาศาสตร์ และซอฟต์แวร์ที่พัฒนาโดยนักเรียนในโครงการ เพื่อแก้ปัญหาและสร้างสรรค์นวัตกรรมใหม่ๆ
             </p>
-          </div>
+          </motion.div>
 
-          {/* Portfolios Grid */}
+          {/* Activities Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {portfolios.map((portfolio) => (
-              <div key={portfolio.id} className="group flex flex-col">
-                <div className="w-full aspect-[16/9] rounded-[18px] bg-[#f5f5f7] border border-black/5 mb-6 overflow-hidden relative flex items-center justify-center">
-                  <div className="text-[#1d1d1f]/30 font-medium flex flex-col items-center gap-2">
-                    {portfolio.icon}
-                    <span>[ภาพผลงาน: {portfolio.title}]</span>
+            {activities.map((activity) => (
+              <motion.div key={activity.id} variants={fadeUp} className="group flex flex-col">
+                <div className="w-full aspect-[16/9] rounded-[18px] bg-[#eef3fb] dark:bg-zinc-900 border border-black/5 dark:border-white/10 mb-6 overflow-hidden relative flex items-center justify-center transition-colors">
+                  <div className="text-[#1d1d1f]/30 dark:text-white/20 font-medium flex flex-col items-center gap-2">
+                    {activity.icon}
+                    <span>[ภาพผลงาน: {activity.title}]</span>
                   </div>
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors cursor-pointer"></div>
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/5 dark:group-hover:bg-white/5 transition-colors cursor-pointer"></div>
                   
                   {/* Hover View Project Button */}
                   <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0">
-                    <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#1d1d1f] text-[14px] font-medium shadow-sm border border-black/5 hover:scale-[0.98] transition-transform">
+                    <button className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#f8fbff] dark:bg-zinc-800 text-[#1d1d1f] dark:text-zinc-50 text-[14px] font-medium shadow-sm border border-black/5 dark:border-white/10 hover:scale-[0.98] transition-transform">
                       ดูรายละเอียด
                       <ArrowUpRight className="w-4 h-4" />
                     </button>
@@ -82,30 +97,30 @@ export default function PortfoliosPage() {
                 </div>
                 
                 <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-2xl font-semibold tracking-tight text-[#1d1d1f] group-hover:text-[#0066cc] transition-colors cursor-pointer">
-                    {portfolio.title}
+                  <h3 className="text-2xl font-semibold tracking-tight text-[#1d1d1f] dark:text-zinc-50 group-hover:text-[#0066cc] dark:group-hover:text-[#0066cc] transition-colors cursor-pointer">
+                    {activity.title}
                   </h3>
-                  <span className="text-[14px] font-medium text-[#1d1d1f]/40 px-3 py-1 bg-[#f5f5f7] rounded-full">
-                    {portfolio.year}
+                  <span className="text-[14px] font-medium text-[#1d1d1f]/40 dark:text-zinc-500 px-3 py-1 bg-[#eef3fb] dark:bg-zinc-900 rounded-full transition-colors">
+                    {activity.year}
                   </span>
                 </div>
                 
-                <p className="text-[17px] text-[#1d1d1f]/70 font-light mb-6 flex-1">
-                  {portfolio.description}
+                <p className="text-[15px] sm:text-[17px] text-[#1d1d1f]/70 dark:text-zinc-400 font-light mb-6 flex-1 transition-colors line-clamp-2 sm:line-clamp-none">
+                  {activity.description}
                 </p>
                 
                 <div className="flex flex-wrap gap-2">
-                  {portfolio.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1.5 rounded-md border border-black/5 bg-[#f5f5f7] text-[13px] text-[#1d1d1f]/70 font-medium">
+                  {activity.tags.map((tag) => (
+                    <span key={tag} className="px-3 py-1.5 rounded-md border border-black/5 dark:border-white/10 bg-[#eef3fb] dark:bg-zinc-900 text-[13px] text-[#1d1d1f]/70 dark:text-zinc-400 font-medium transition-colors">
                       {tag}
                     </span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
-        </div>
+        </motion.div>
       </main>
 
       <Footer />
